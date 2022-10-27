@@ -73,17 +73,17 @@ def main():
 
 @app.route('/')
 def root():
-    # dept = request.args.get('dept')
-    # coursenum = request.args.get('coursenum')
-    # area = request.args.get('area')
-    # title = request.args.get('title')
+    dept = request.args.get('dept')
+    coursenum = request.args.get('coursenum')
+    area = request.args.get('area')
+    title = request.args.get('title')
 
-    # return get_courses(dept,coursenum,area,title)
     """Landing page."""
     return render_template(
         'home.html',
-        title="Elise and Ernest's Demo Site",
-        description="Smarter page templates with Flask & Jinja."
+        title="<strong>Elise and Ernest's Demo Site</strong>",
+        description="Smarter page templates with Flask & Jinja.",
+        Courses=get_courses(dept,coursenum,area,title),
     ) 
 
 
