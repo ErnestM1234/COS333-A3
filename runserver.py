@@ -3,7 +3,7 @@
 # authors: Ernest McCarter and Elise Kratzer
 #-----------------------------------------------------------------------
 import argparse
-from re import T
+from flask import render_template
 import sys
 from flask import Flask
 from courseinfo import run_info_query
@@ -73,12 +73,18 @@ def main():
 
 @app.route('/')
 def root():
-    dept = request.args.get('dept')
-    coursenum = request.args.get('coursenum')
-    area = request.args.get('area')
-    title = request.args.get('title')
+    # dept = request.args.get('dept')
+    # coursenum = request.args.get('coursenum')
+    # area = request.args.get('area')
+    # title = request.args.get('title')
 
-    return get_courses(dept,coursenum,area,title)
+    # return get_courses(dept,coursenum,area,title)
+    """Landing page."""
+    return render_template(
+        'home.html',
+        title="Elise and Ernest's Demo Site",
+        description="Smarter page templates with Flask & Jinja."
+    ) 
 
 
 @app.route('/regdetails')
