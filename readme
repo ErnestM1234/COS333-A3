@@ -1,0 +1,27 @@
+elisek_ernestm 
+Elise Kratzer Ernest McCarter Assignment Number 3
+
+We like to do pair programming to learn the most.
+Elise took the lead on taking the first pass at getting the secondary page 
+to conform to the correct behavior during the whole process and at the end. 
+She reviewed lecture slides to get familiar with the html code. She tested 
+the code against the reference solution and reviewed Ernest's error handling 
+work. Elise built on runserver.py.
+
+Ernest began with the primary page layout and started runserver.py. He fixed 
+the wildcard issues which we had in both the first two assignments and did 
+not notice in our grade reports until now. He wrote the error handling error 
+messages, such as the non-integer classid error. He ran different tests on our 
+code to compare it to the reference solution at the end.
+
+We received no help from other people except viewing Ed posts.
+
+Sources of info we used include lecture slides and Ed postings.
+
+The assignment took 8 hours.
+
+It helped us get very familiar with html and cookies. We had not used cookies 
+before, but we had minimal experience with html. We also continue to get more 
+diligent at error handling. We enjoyed the assignment because it's fun to see 
+our results live as we make edits and additions. It is useful to have the 
+skills to create what we did. 
