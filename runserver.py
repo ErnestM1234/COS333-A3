@@ -3,7 +3,6 @@
 # authors: Ernest McCarter and Elise Kratzer
 #-----------------------------------------------------------------------
 import argparse
-from email.policy import strict
 import sys
 from flask import render_template
 from flask import Flask

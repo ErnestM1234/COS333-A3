@@ -16,8 +16,8 @@ DATABASE_URL = 'file:reg.sqlite?mode=rw'
 def format_input_params(arg):
     # add escape characters for wild cards
     parameter = str(arg).replace('\\', '\\\\')
-    parameter = parameter.replace('_', '\_')
-    parameter = parameter.replace('%', '\%')
+    parameter = parameter.replace('_', r'\_')
+    parameter = parameter.replace('%', r'\%')
     # add wild cards for string search
     return '%' + parameter + '%'
 

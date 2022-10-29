@@ -65,11 +65,11 @@ def database_call(query):
 
         if result[0] is False:
             print(result[1], file=sys.stderr)
-
+            msg = "A server error occured." \
+                " Please contact the system administrator."
             if "no class with classid" in str(result[1]):
-                return [False, result[1]]
-            return [False, "A server error occured." \
-                " Please contact the system administrator."]
+                msg = result[1]
+            return [False, msg]
 
         return [True, result[1]]
 
