@@ -81,8 +81,8 @@ def root():
     """Landing page."""
     return render_template(
         'layout.html',
-        title="<strong>Elise and Ernest's Demo Site</strong>",
-        description="Smarter page templates with Flask & Jinja.",
+        title="<strong>Elise and Ernest's Demo Site</strong>", # change this!!!! 
+        description="Smarter page templates with Flask & Jinja.",  # change this!!! 
         Courses=get_courses(dept,coursenum,area,title),
     ) 
 
@@ -91,7 +91,7 @@ def root():
 @app.route('/regdetails')
 def regdetails():
     classid = request.args.get('classid')
-    return get_details(classid)
+    # return get_details(classid)
     # added the below 
     return render_template(
         'details.html',
