@@ -3,79 +3,70 @@
 
   <head>
     <meta charset="utf-8">
-      <title> Registrar's Office Class Search</title>
+    <title> Registrar's Office Class Search</title>
   </head>
 
   <body>
-    <div class="container">
-      <body>
-        <h1> Registrar's Office </h1>
-      <h2>Class Search</h2>
-      <hr>
-      <form>
-          <table>
-              <tbody>
-              <tr>
-                  <td align="right">Dept:</td>
-                  <td> <input type="text" name="dept" value={{Dept}}>
-                  <br>
-              </td>
-              </tr>
-              <tr>
-                  <td align="right">Number:</td>
-                  <td> <input type="text" name="coursenum" value={{Coursenum}}>
-                      <br>
-                  </td>
-                  </tr>
-              </tr>
-              <tr>
-                  <td align="right">Area:</td>
-                  <td> <input type="text" name="area" value={{Area}}>
-                  <br>
-              </td>
-              </tr>
-              <tr>
-                  <td align="right">Title:</td>
-                  <td> <input type="text" name="title" value={{Title}}>
-                  <br>
-              </td>
-              </tr>
-              <tr>
-                  <td></td>
-                  <td>
-                      <input type="submit">
-                  </td>
-              </tr>
-          </tbody>
-          </table> 
-      </form>
-      <hr>
-      <table>
-      <tbody>
-          <tr>
-              <td><strong>ClassId</strong></td>
-              <td><strong>Dept</strong></td>
-              <td><strong>Num</strong></td>
-              <td><strong>Area</strong></td>
-              <td><strong>Title</strong></td>
-          </tr>
-          {% for course in Courses %}    
-          <tr>               
-              <td><a href={{"/regdetails?classid=" + course["classid"]|string}}>{{course["classid"]}}</a></td>  
-              <td>{{course["dept"]}}</td>     
-              <td>{{course["coursenum"]}}</td>    
-              <td>{{course["area"]}}</td>    
-              <td>{{course["title"]}}</td>   
-          </tr>
-          {% endfor %}    
-      </tbody>
-  </table>
-  <hr>
-  Created by
-  <a href="https://www.cs.princeton.edu/~rdondero">Bob Dondero</a>.
-  <hr>
-     
-  </div>
+    <h1> Registrar's Office </h1>
+    <h2>Class Search</h2>
+    <hr>
+    <form>
+        <table>
+            <tr>
+                <td align="right">Dept:</td>
+                <td>
+                    <input type="text" name="dept" value={{Dept}}>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Number:</td>
+                <td>
+                    <input type="text" name="coursenum" value={{Coursenum}}>
+                </td>
+                </tr>
+            </tr>
+            <tr>
+                <td align="right">Area:</td>
+                <td>
+                    <input type="text" name="area" value={{Area}}>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Title:</td>
+                <td>
+                    <input type="text" name="title" value={{Title}}>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit">
+                </td>
+            </tr>
+        </table> 
+    </form>
+    <hr>
+    <table>
+        <tr>
+            <td><strong>ClassId</strong></td>
+            <td><strong>Dept</strong></td>
+            <td><strong>Num</strong></td>
+            <td><strong>Area</strong></td>
+            <td><strong>Title</strong></td>
+        </tr>
+        {% for course in Courses %}    
+        <tr>               
+            <td><a href={{"/regdetails?classid=" + course["classid"]|string}}>{{course["classid"]}}</a></td>  
+            <td>{{course["dept"]}}</td>     
+            <td>{{course["coursenum"]}}</td>    
+            <td>{{course["area"]}}</td>    
+            <td>{{course["title"]}}</td>   
+        </tr>
+        {% endfor %}    
+    </table>
+    <hr>
+    Created by <a href="https://www.cs.princeton.edu/~rdondero">Bob Dondero</a>.
+    <hr>
   </body>
 
 </html>

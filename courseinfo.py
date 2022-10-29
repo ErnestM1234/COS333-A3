@@ -77,7 +77,6 @@ def run_info_query(args):
                 return [True, classes]
 
     except Exception as ex:
-        print(ex, file=sys.stderr)
         return [False, ex]
 
 

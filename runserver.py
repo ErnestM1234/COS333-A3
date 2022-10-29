@@ -3,7 +3,7 @@
 # authors: Ernest McCarter and Elise Kratzer
 #-----------------------------------------------------------------------
 import argparse
-import os
+from email.policy import strict
 import sys
 from flask import render_template
 from flask import Flask
@@ -39,23 +39,16 @@ def get_courses(dept, coursenum, area, title):
                 "title": course[4],
             })
     except Exception:
-        return ["database error"]
-    return output
+        return [False, "database error"]
+    return [True, output]
 
 def get_details(classid):
     try:
-        print("Received command: get_overviews")
         result = run_detailed_query(classid)
-        if result[0] is False:
-            print(result[1], file=sys.stderr)
-            if "no class with classid" in str(result[1]):
-                return result[1]
-            return "A server error occured." \
-                " Please contact the system administrator."
     except Exception:
-        return "database error"
+        return [False, "database error"]
 
-    return result[1]
+    return result
 
 def main():
     # add in custom arguments
@@ -86,9 +79,18 @@ def root():
     area = area if area is not None else ''
     title = title if title is not None else ''
 
+    courses = get_courses(dept,coursenum,area,title)
+    if not courses[0]:
+        print(str(courses[1]), file=sys.stderr)
+        return render_template(
+            "error.html",
+            ErrorMessage="A server error occured." \
+            " Please contact the system administrator."
+        )
+
     response = flask.make_response(render_template(
         'search.html',
-        Courses=get_courses(dept,coursenum,area,title),
+        Courses=courses[1],
         Dept=dept,
         Coursenum=coursenum,
         Area=area,
@@ -105,8 +107,39 @@ def root():
 @app.route('/regdetails')
 def regdetails():
     classid = request.args.get('classid')
+    if classid is None:
+        return render_template(
+            "error.html",
+            ErrorMessage="missing classid"
+        )
+
+    if not classid.isnumeric():
+        return render_template(
+            "error.html",
+            ErrorMessage="non-integer classid"
+        )
+
     # added the below
-    details = get_details(classid)
+    result = get_details(classid)
+
+    if result is None:
+        return render_template(
+            "error.html",
+            ErrorMessage="A server error occured." \
+            " Please contact the system administrator."
+        )
+
+    if result[0] is False:
+        if 'no class with classid' not in str(result[1]):
+            print(str(result[1]), file=sys.stderr)
+            result[1] = "A server error occured." \
+            " Please contact the system administrator."
+        return render_template(
+            "error.html",
+            ErrorMessage=result[1]
+        )
+
+    details = result[1]
 
     # get cookie
     dept = flask.request.cookies.get('dept')
@@ -130,7 +163,6 @@ def regdetails():
         Area=area,
         Title=title
     )
-
 
 #-----------------------------------------------------------------------
 if __name__ == '__main__':
