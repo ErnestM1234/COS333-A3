@@ -100,35 +100,6 @@ def execute_queries(cursor, class_details, class_id):
         class_details['dept'].append(res[0])
         class_details['coursenum'].append(res[1])
 
-
-def format_results(class_details):
-    output = ""
-    output += 'Course Id: ' + str(class_details['courseid']) + '\n'
-    output += '\n'
-    output +='Days: ' + str(class_details['days']) + '\n'
-    output +='Start time: ' + str(class_details['starttime']) + '\n'
-    output +='End time: ' + str(class_details['endtime']) + '\n'
-    output +='Building: ' + str(class_details['bldg']) + '\n'
-    output +='Room: ' + str(class_details['roomnum']) + '\n'
-    output += '\n'
-    for (dept, coursenum) in zip(
-        class_details['dept'],
-        class_details['coursenum']):
-        output +='Dept and Number: %s %s' % (dept, coursenum) + '\n'
-    output += '\n'
-    output +='Area: ' + str(class_details['area']) + '\n'
-    output += '\n'
-    output += "Title: " + str(class_details['title']) + '\n'
-    output += '\n'
-    output += "Description: " + str(class_details['descrip']) + '\n'
-    output += '\n'
-    output += "Prerequisites: " + str(class_details['prereqs']) + '\n'
-    output += '\n'
-    for profname in class_details['profname']:
-        output +='Professor: ' + profname + '\n'
-
-    return output
-
 def run_detailed_query(class_id):
     # execute database queries
     try:
@@ -154,11 +125,7 @@ def run_detailed_query(class_id):
                     + str(class_id)
                     + " exists"]
 
-
-                # format database query results
-                formatted_details = format_results(class_details)
-
-                return [True, formatted_details]
+                return [True, class_details]
 
     except Exception as ex:
         return [False, ex]

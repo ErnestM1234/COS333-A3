@@ -3,37 +3,44 @@
 
   <head>
     <meta charset="utf-8">
-      <title> Registrar's Office Class Details</title>
+    <title>Registrar's Office Class Details</title>
   </head>
 
   <body>
-    <div class="container">
-      <h1> Registrar's Office </h1>
-      <h2>Class Details + "(class id" <td>{{course["classid"]}}</td> + ")" </h2>
-      <hr>
-      # to do: the Class Details section on the regdetails page
-      
-      <h2>Course Details + "(course id" <td>{{course["classid"]}}</td> + ")"</h2>
+    <h1> Registrar's Office </h1>
+    <hr>
+    <h2>Class Details &#40;class id {{Details["classid"]}}&#41;</h2>
+    <strong>Course Id: </strong> {{Details["courseid"]}}<br>
+    <strong>Days: </strong>{{Details["days"]}}<br>
+    <strong>Start time: </strong>{{Details["starttime"]}}<br>
+    <strong>End time: </strong>{{Details["endtime"]}}<br>
+    <strong>Building: </strong>{{Details["bldg"]}}<br>
+    <strong>Room: </strong>{{Details["roomnum"]}}<br>
+ 
 
-     
+    <hr>
+    <h2>Course Details &#40;course id {{Details["courseid"]}}&#41;</h2>
 
-      <strong>Dept and Number: </strong>
-      <td> <name="dept" value>
-        <td>{{course["dept"]}}</td>     
-              <td>{{course["coursenum"]}}</td>    
-        <strong> Area: </strong>
-    </td>
-   
-    <strong>Title: </strong>
-   
-    <strong> Description </strong>
+    {% for deptAndNum in DeptAndNum %}
+      <strong>Dept and Number: </strong>{{deptAndNum[0]}} {{deptAndNum[1]}}<br>
+    {% endfor %}
+
+    <strong>Area: </strong>{{Details["area"]}}<br>
+    <strong>Title: </strong>{{Details["title"]}}<br>
+    <strong>Description: </strong>{{Details["descrip"]}}<br>
+    <strong>Prerequisites: </strong>{{Details["prereqs"]}}<br>
     
-    <strong>Prerequisites</strong>
-
-    <strong>Professor</strong>
-    
+    {% for profname in Details["profname"] %}
+      <strong>Professor: </strong> {{profname}} <br>
+    {% endfor %}
+ 
+    <hr>
+    <p>Click here to do <a href={{"/?dept=" + Dept + "&coursenum=" + Coursenum|string + "&area=" + Area + "&title=" + Title}}>another class search</a></p>
+    <hr>
+    Created by <a href="https://www.cs.princeton.edu/~rdondero">Bob Dondero</a>.
+    <hr>
+  
      
-  </div>
   </body>
 
 </html>
